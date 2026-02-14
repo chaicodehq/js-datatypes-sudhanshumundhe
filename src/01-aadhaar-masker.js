@@ -29,4 +29,15 @@
  */
 export function maskAadhaar(aadhaarNumber) {
   // Your code here
+  if (
+    typeof aadhaarNumber !== "string" ||
+    aadhaarNumber != 12 ||
+    !/^\d{12}$/.test(aadhaarNumber)
+  ) {
+    return "Invalid";
+  }
+
+  const masked = "XXXX-XXXX-" + aadhaarNumber.slice(8);
+
+  return masked;
 }

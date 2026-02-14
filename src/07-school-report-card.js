@@ -40,6 +40,39 @@
  *   generateReportCard({ name: "Priya", marks: { maths: 35, science: 28 } })
  *   // => { name: "Priya", totalMarks: 63, percentage: 31.5, grade: "F", ... }
  */
-export function generateReportCard(student) {
+
+export function createPaanOrder(basePaan, customizations) {
   // Your code here
+  if (typeof basePaan !== "object" || basePaan === null) return {};
+  if (typeof customizations !== "object" || customizations === null)
+    return { ...basePaan };
+  Object.assign({}, basePaan, customizations);
+  return { ...basePaan, ...customizations };
+}
+
+export function freezeMenu(menu) {
+  // Your code here
+  if (typeof menu !== "object" || menu === null) return {};
+  return Object.freeze(menu);
+}
+
+export function updatePrices(menu, increase) {
+  // Your code here
+  if (typeof menu !== "object" || menu === null || typeof increase !== "number")
+    return {};
+  return Object.fromEntries(
+    Object.entries(menu).map(([item, price]) => [item, price + increase]),
+  );
+}
+
+export function mergeDailySpecials(regularMenu, specialsMenu) {
+  // Your code here
+  regularMenu =
+    typeof regularMenu === "object" && regularMenu !== null ? regularMenu : {};
+
+  specialsMenu =
+    typeof specialsMenu === "object" && specialsMenu !== null
+      ? specialsMenu
+      : {};
+  return { regularMenu, specialsMenu };
 }

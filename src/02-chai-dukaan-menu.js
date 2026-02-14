@@ -10,7 +10,7 @@
  *   - Har item ka naam toUpperCase() karo
  *   - Format: "NAAM - Rs.PRICE" (e.g., "MASALA CHAI - Rs.15")
  *   - Saare formatted items ko " | " se join karo
- *   - Items jinka price 0 ya negative hai, unhe skip karo (filter out)
+ *   -
  *   - Items jinka naam empty string hai ya string nahi hai, unhe bhi skip karo
  *   - Hint: Use Array.isArray(), filter(), map(), join(), toUpperCase()
  *
@@ -29,4 +29,16 @@
  */
 export function formatChaiMenu(items) {
   // Your code here
+  if (!Array.isArray(items) || items.length === 0) return "";
+
+  return items
+    .filter(
+      (item) =>
+        typeof item.price === "number" &&
+        item.price > 0 &&
+        item.name &&
+        typeof item.name === "string",
+    )
+    .map((item) => `${item.name.toUpperCase()} - Rs.${item.price}`)
+    .join(" | ");
 }
